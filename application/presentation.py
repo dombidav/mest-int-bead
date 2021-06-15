@@ -1,6 +1,20 @@
-from abstract.engine import SolverEngine
-from models.person import Person
-from models.state import State
+from application.interaction import choice
+from application.manual_start import init_manual_start
+from application.switches import *
+from models.state import State, target_state
+
+
+def ask_for_solver():
+    print("""
+    Please select solver engine:
+        0 - Exit
+        1 - Solve Manually
+        2 - Solve with Depth first algorithm
+        3 - Solve with Greedy best first
+        4 - Solve with A* algorithm
+    """)
+
+    return choice(engine, unknown_message='Unknown solver:')
 
 
 def print_solution(solution_list: list[State], solver: SolverEngine = None):
