@@ -2,7 +2,7 @@ from queue import PriorityQueue
 from typing import Optional
 
 from abstract.engine import SolverEngine
-from models.node_impl import AStarNode
+from models.astar_node import AStarNode
 from models.state import State
 
 
