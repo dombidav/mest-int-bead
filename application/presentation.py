@@ -38,3 +38,44 @@ def print_solution(solution_list: list[State], solver: SolverEngine = None):
         print(f'{solution_list[-1].remaining_minutes} minutes remaining')
     else:
         print('No solution for problem')
+
+
+def ask_for_start_state() -> State:
+    print("""
+        Please select start state:
+            0 - Exit
+            1 - Set Manually
+            2 - Use default
+            3 - Use short
+            3 - Use unsolvable
+        """)
+    answer = choice(possible_starts, 'Unknown start state')
+    if answer == 1:
+        return init_manual_start()
+    return answer
+
+
+def ask_for_target_state(start_state: State) -> State:
+    print("""
+            Please select target state:
+                0 - Exit
+                1 - Set Manually
+                2 - Use default (everyone on right)
+            """)
+    answer = choice(possible_targets, 'Unknown target state')
+    return init_manual_start() if answer == 1 else target_state(start_state)
+
+
+def show_welcome():
+    print("""
+    Fundamentals of Artificial Intelligence Assignment - Dombi Tibor Dávid - HL5U4V - 2021
+    
+    Python implementation of the following game:
+    Some people want to get from one side of a bridge to the other. 
+    Up to two people can cross the bridge at a time. 
+    Each walk at a different speed. If two go at the same time, they will both walk at the slower person's pace. 
+    A lamp is also required for the crossing. (You can't go through without a lamp.) 
+    How do all of them get to the other side in a given time?
+    
+    Note: To run with the original numbers in the assignment, use default on each setting.
+    """)
