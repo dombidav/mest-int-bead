@@ -26,7 +26,6 @@ def print_solution(solution_list: list[State], solver: SolverEngine = None):
         for i in range(len(solution_list) - 1):
             current_state: State = solution_list[i]
             next_state: State = solution_list[i + 1]
-            diff: list[Person] = []
             if current_state.lamp_on_left:
                 diff = [person for person in current_state.left_side if person not in next_state.left_side]
             else:
