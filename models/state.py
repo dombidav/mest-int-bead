@@ -33,9 +33,17 @@ def short_start() -> State:
     return State([Person(1), Person(2), Person(5)], remaining_minutes=11)
 
 
+def unsolvable_start() -> State:
+    """
+    Unsolvable problem for debugging purposes
+    :return: State with 5 person and not enough time
+    """
+    return State([Person(1), Person(2), Person(5), Person(8), Person(10)], remaining_minutes=11)
+
+
 def target_state(starting_state: State) -> State:
     return State([], starting_state.left_side[:], 0, False)
 
 
-def start_state() -> State:
+def default_start() -> State:
     return State([Person(1), Person(2), Person(5), Person(10)], remaining_minutes=17)
