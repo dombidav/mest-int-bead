@@ -20,20 +20,14 @@ class AStarSolver(SolverEngine):
         start_node = AStarNode(self.start, None, 0)
         child_id = 0
         self.priority_queue.put((0, child_id, start_node))
-        while not self.path and self.priority_queue.qsize():
-            closest_child: AStarNode = self.priority_queue.get()[2]
+        while self.priority_queue.qsize():
+            closest_child: AStarNode = self.priority_queue.get()[2]  # Note: [0] is the cost, [1] is the ID, [2] ist the Node
             closest_child.create_children()
             self.visited_queue.append(closest_child)
             for child in closest_child.children:
-                discovered_child = self.discovered(child)
-                if not discovered_child:
-                    child_id += 1  # Not sure about this, probably so there are no duplicates?
+                if not self.discovered(child):
+                    child_id += 1  # If there are two child with the same cost, we will dequeue the first one discovered
                     if child.value == self.goal:
-                        self.path = child.path
-                        break
+                        return child.path
                     self.priority_queue.put((child.cost, child_id, child))
-                elif len(child.path) < len(discovered_child.path):
-                    discovered_child.path = child.path  # Then I realized this should never happen....
-        if not self.path:
-            return None
-        return self.path
+        return None
