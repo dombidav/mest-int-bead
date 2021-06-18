@@ -1,6 +1,7 @@
 from abstract.engine import SolverEngine
 from engines.astar.astar import AStarSolver
 from engines.dfs.dfs import DepthFirstSolver
+from engines.greedy.greedy import GreedySolver
 from engines.manual.manual import ManualSolver
 from models.state import State, default_start, short_start, unsolvable_start, multi_solution_start
 
@@ -12,6 +13,7 @@ def engine(number: str) -> [SolverEngine, int, None]:
         0: 0,
         1: ManualSolver,
         2: DepthFirstSolver,
+        3: GreedySolver,
         4: AStarSolver
     }
     return switch.get(int(number))

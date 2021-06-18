@@ -2,7 +2,7 @@ from typing import Optional
 
 from abstract.engine import SolverEngine
 from engines.dfs.dfs_node import DfsNode
-from models.state import State, target_state
+from models.state import State
 
 
 class DepthFirstSolver(SolverEngine):
@@ -17,13 +17,12 @@ class DepthFirstSolver(SolverEngine):
     def implementation(self) -> Optional[list[State]]:
         start_node = DfsNode(self.start, None)
         stack: list[DfsNode] = [start_node]
-        visited = set()
         while stack:
             currentNode = stack.pop()
-            if currentNode not in visited:
+            if currentNode not in self.visited_queue:
                 if currentNode.value == self.goal:
                     return currentNode.path
-                visited.add(currentNode)
+                self.visited_queue.append(currentNode)
                 child: DfsNode
                 currentNode.create_children()
                 for child in currentNode.children:

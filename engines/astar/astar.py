@@ -33,7 +33,7 @@ class AStarSolver(SolverEngine):
                         break
                     self.priority_queue.put((child.cost, child_id, child))
                 elif len(child.path) < len(discovered_child.path):
-                    discovered_child.path = child.path
+                    discovered_child.path = child.path  # Then I realized this should never happen....
         if not self.path:
             return None
         return self.path

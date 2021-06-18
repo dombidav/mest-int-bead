@@ -14,15 +14,15 @@ class GreedySolver(SolverEngine):
         super(GreedySolver, self).__init__(start, goal)
 
     def implementation(self) -> Optional[list[State]]:
-        start_node = GreedyNode(self.start, None, 0)
+        start_node = GreedyNode(self.start, None)
         child_id = 0
         self.priority_queue.put((0, child_id, start_node))
         while not self.path and self.priority_queue.qsize():
             closest_child: GreedyNode = self.priority_queue.get()[2]
             closest_child.create_children()
-            self.visited_queue.append(closest_child.value)
+            self.visited_queue.append(closest_child)
             for child in closest_child.children:
-                if child.value not in self.visited_queue:
+                if not self.discovered(child):
                     child_id += 1
                     if child.value == self.goal:
                         self.path = child.path
