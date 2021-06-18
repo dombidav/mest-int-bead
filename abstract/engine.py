@@ -3,13 +3,14 @@ import time
 from queue import PriorityQueue
 from typing import Optional
 
+from abstract.node import Node
 from models.state import State
 
 
 class SolverEngine(metaclass=ABCMeta):
     def __init__(self, start: State, goal: State):
         self.path: list[State] = []
-        self.visited_queue: list[State] = []
+        self.visited_queue: list[Node] = []
         self.priority_queue = PriorityQueue()
         self.start: State = start
         self.goal: State = goal
@@ -29,3 +30,9 @@ class SolverEngine(metaclass=ABCMeta):
     @abstractmethod
     def name(self) -> str:
         pass
+
+    def discovered(self, child: Node) -> Optional[Node]:
+        for node in self.visited_queue:
+            if node.value == child.value:
+                return child
+        return None

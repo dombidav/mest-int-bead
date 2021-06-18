@@ -23,14 +23,17 @@ class AStarSolver(SolverEngine):
         while not self.path and self.priority_queue.qsize():
             closest_child: AStarNode = self.priority_queue.get()[2]
             closest_child.create_children()
-            self.visited_queue.append(closest_child.value)
+            self.visited_queue.append(closest_child)
             for child in closest_child.children:
-                if child.value not in self.visited_queue:
+                discovered_child = self.discovered(child)
+                if not discovered_child:
                     child_id += 1  # Not sure about this, probably so there are no duplicates?
                     if child.value == self.goal:
                         self.path = child.path
                         break
                     self.priority_queue.put((child.cost, child_id, child))
+                elif len(child.path) < len(discovered_child.path):
+                    discovered_child.path = child.path
         if not self.path:
             return None
         return self.path
