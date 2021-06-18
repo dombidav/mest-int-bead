@@ -17,9 +17,8 @@ def is_valid(state: State, moving_persons: list[Person]) -> bool:
         if left_side:
             if not state.left_side.__contains__(moving_persons[1]):
                 return False
-        else:
-            if not state.right_side.__contains__(moving_persons[1]):
-                return False
+        elif not state.right_side.__contains__(moving_persons[1]):
+            return False
     return True
 
 

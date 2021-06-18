@@ -14,9 +14,6 @@ class State(object):
         self.lamp_on_left = lamp_on_left
 
     def __eq__(self, other):
-        if not isinstance(other, State):
-            return False
-
         return self.left_side == other.left_side
 
     def __str__(self):
@@ -47,3 +44,7 @@ def target_state(starting_state: State) -> State:
 
 def default_start() -> State:
     return State([Person(1), Person(2), Person(5), Person(10)], remaining_minutes=17)
+
+
+def multi_solution_start() -> State:
+    return State([Person(1), Person(2), Person(3), Person(4)], remaining_minutes=30)
