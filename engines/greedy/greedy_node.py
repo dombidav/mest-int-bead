@@ -13,8 +13,5 @@ class GreedyNode(Node):
         return len(self.value.left_side)
 
     def create_children(self):
-        if not self.children:
-            possibles = generate_children(self.value)
-            for possible_state in possibles:
-                child = GreedyNode(possible_state, self)
-                self.children.append(child)
+        for possible_state in (generate_children(self.value)):
+            yield GreedyNode(possible_state, self)
