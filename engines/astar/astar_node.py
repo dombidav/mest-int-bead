@@ -24,8 +24,5 @@ class AStarNode(Node):
         return h(self) + g(self)
 
     def create_children(self):
-        if not self.children:
-            possibles = generate_children(self.value)
-            for possible_state in possibles:
-                child = AStarNode(possible_state, self, path_length=self.path_length+1)
-                self.children.append(child)
+        for possible_state in (generate_children(self.value)):
+            yield AStarNode(possible_state, self, path_length=self.path_length + 1)
