@@ -12,6 +12,6 @@ class GreedyNode(Node):
     def get_cost(self):  # h() function
         return len(self.value.left_side)
 
-    def create_children(self):
+    def children(self):
         for possible_state in (generate_children(self.value)):
             yield GreedyNode(possible_state, self)

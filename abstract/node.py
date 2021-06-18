@@ -8,7 +8,6 @@ from models.state import State
 
 class Node(metaclass=ABCMeta):
     def __init__(self, value: State, parent: Node = None):
-        self.children: list[Node] = []
         self.parent = parent
         self.value = value
         self.cost: int = 0
@@ -19,5 +18,5 @@ class Node(metaclass=ABCMeta):
             self.path = [value]
 
     @abstractmethod
-    def create_children(self):
+    def children(self):
         pass

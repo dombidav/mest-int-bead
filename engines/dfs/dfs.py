@@ -24,6 +24,6 @@ class DepthFirstSolver(SolverEngine):
                 return currentNode.path
 
             self.visited_queue.append(currentNode)
-            for child in (child for child in currentNode.create_children() if child not in self.visited_queue):
+            for child in (child for child in currentNode.children() if child not in self.visited_queue):
                 stack.append(child)
         return None

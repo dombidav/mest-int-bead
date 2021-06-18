@@ -30,7 +30,7 @@ class DepthLimitedSolver(SolverEngine):
             return None
 
         self.visited_queue.append(current_node)
-        for result in (self.recurse(child, depth_limit - 1) for child in current_node.create_children() if child not in self.visited_queue):
+        for result in (self.recurse(child, depth_limit - 1) for child in current_node.children() if child not in self.visited_queue):
             if result:
                 return result
         return None

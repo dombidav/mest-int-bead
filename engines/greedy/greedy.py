@@ -20,7 +20,7 @@ class GreedySolver(SolverEngine):
         while not self.path and self.priority_queue.qsize():
             closest_child: GreedyNode = self.priority_queue.get()[2]
             self.visited_queue.append(closest_child)
-            for child in (child for child in closest_child.create_children() if child not in self.visited_queue):
+            for child in (child for child in closest_child.children() if child not in self.visited_queue):
                 if child.value == self.goal:
                     return child.path
 

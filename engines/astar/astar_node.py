@@ -23,6 +23,6 @@ class AStarNode(Node):
     def get_cost(self):
         return h(self) + g(self)
 
-    def create_children(self):
+    def children(self):
         for possible_state in (generate_children(self.value)):
             yield AStarNode(possible_state, self, path_length=self.path_length + 1)

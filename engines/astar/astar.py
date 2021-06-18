@@ -22,7 +22,7 @@ class AStarSolver(SolverEngine):
         while self.priority_queue.qsize():
             closest_child: AStarNode = self.priority_queue.get()[2]  # Note: [0] is the cost, [1] is the ID, [2] ist the Node
             self.visited_queue.append(closest_child)
-            for child in (child for child in closest_child.create_children() if child not in self.visited_queue):
+            for child in (child for child in closest_child.children() if child not in self.visited_queue):
                 child_id += 1  # If there are two child with the same cost, we will dequeue the first one discovered
                 if child.value == self.goal:
                     return child.path
