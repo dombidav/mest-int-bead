@@ -3,7 +3,6 @@ import time
 from queue import PriorityQueue
 from typing import Optional
 
-from abstract.node import Node
 from models.state import State
 
 

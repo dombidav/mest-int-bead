@@ -5,7 +5,7 @@ def choice(switch, unknown_message: str):
     answer = switch(input('Your choice:'))
     while answer is None:
         answer = input(unknown_message)
-    if answer == 0:
+    if answer is int and answer == 0:
         exit(0)
     return answer
 

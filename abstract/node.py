@@ -6,7 +6,7 @@ from models.state import State
 
 
 class Node(metaclass=ABCMeta):
-    def __init__(self, value: State, parent: Node = None, start: State = None, goal: State = None):
+    def __init__(self, value: State, parent: Node = None):
         self.children: list[Node] = []
         self.parent = parent
         self.value = value
@@ -14,12 +14,8 @@ class Node(metaclass=ABCMeta):
         if parent:
             self.path = parent.path[:]
             self.path.append(value)
-            self.start = parent.start
-            self.goal = parent.goal
         else:
             self.path = [value]
-            self.start = start
-            self.goal = goal
 
     @abstractmethod
     def create_children(self):

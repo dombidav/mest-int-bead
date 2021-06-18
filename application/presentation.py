@@ -19,7 +19,7 @@ def ask_for_solver():
 
 def print_solution(solution_list: list[State], solver: SolverEngine = None):
     if solution_list:
-        print(f'Done with {solver.name} in {solver.execution_time * 1_000_000} μs')
+        print(f'Done with {solver.name} in {solver.execution_time * 1000} ms')
         print('(Note: asterisk or * signals the position of the lamp)')
         print('------')
         print('Steps:')
@@ -46,23 +46,13 @@ def ask_for_start_state() -> State:
             1 - Set Manually
             2 - Use default
             3 - Use short
-            3 - Use unsolvable
+            4 - Use unsolvable
+            5 - Multiple solutions
         """)
     answer = choice(possible_starts, 'Unknown start state')
-    if answer == 1:
+    if answer is int and answer == 1:
         return init_manual_start()
     return answer
-
-
-def ask_for_target_state(start_state: State) -> State:
-    print("""
-            Please select target state:
-                0 - Exit
-                1 - Set Manually
-                2 - Use default (everyone on right)
-            """)
-    answer = choice(possible_targets, 'Unknown target state')
-    return init_manual_start() if answer == 1 else target_state(start_state)
 
 
 def show_welcome():
