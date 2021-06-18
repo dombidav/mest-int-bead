@@ -14,7 +14,7 @@ class State(object):
         self.lamp_on_left = lamp_on_left
 
     def __eq__(self, other):
-        return self.left_side == other.left_side
+        return isinstance(other, State) and (self.left_side == other.left_side)
 
     def __str__(self):
         left_side = '[' + ', '.join(map(str, self.left_side)) + (', *' if self.lamp_on_left else '') + ']'
