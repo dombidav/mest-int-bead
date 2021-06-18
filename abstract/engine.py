@@ -1,5 +1,5 @@
-from abc import ABCMeta, abstractmethod
 import time
+from abc import ABCMeta, abstractmethod
 from queue import PriorityQueue
 from typing import Optional
 
