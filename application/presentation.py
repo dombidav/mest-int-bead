@@ -50,7 +50,7 @@ def ask_for_start_state() -> State:
             5 - Multiple solutions
         """)
     answer = choice(possible_starts, 'Unknown start state')
-    if answer is int and answer == 1:
+    if answer in [1, '1']:
         return init_manual_start()
     return answer
 

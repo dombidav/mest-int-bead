@@ -2,10 +2,10 @@ from os import system, name
 
 
 def choice(switch, unknown_message: str):
-    answer = switch(input('Your choice:'))
+    answer = switch(input('Your choice:').strip(' '))
     while answer is None:
         answer = input(unknown_message)
-    if answer is int and answer == 0:
+    if answer in ['0', 0]:  # When I run this with debugger answer was string. When I run it from terminal answer was integer...
         exit(0)
     return answer
 
@@ -15,7 +15,7 @@ def clear_output():
 
 
 def confirm(prompt: str, true_letter: str = 'y', false_letter: str = 'n') -> bool:
-    ans = None
+    ans = input(f"{prompt}({true_letter}/{false_letter})").strip(' ').lower()
     while ans not in [true_letter, false_letter]:
         clear_output()
         ans = input(f"Unknown option. \n{prompt}({true_letter}/{false_letter})").strip(
