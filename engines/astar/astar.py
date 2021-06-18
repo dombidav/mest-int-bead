@@ -3,7 +3,7 @@ from typing import Optional
 
 from abstract.engine import SolverEngine
 from engines.astar.astar_node import AStarNode
-from models.state import State, target_state
+from models.state import State
 
 
 class AStarSolver(SolverEngine):
@@ -18,16 +18,13 @@ class AStarSolver(SolverEngine):
 
     def implementation(self) -> Optional[list[State]]:
         child_id = 0
-        self.priority_queue.put(
-            (0, child_id, (AStarNode(self.start, None, 0)))
-        )
+        self.priority_queue.put( (0, child_id, (AStarNode(self.start, None, 0))) )
         while self.priority_queue.qsize():
             closest_child: AStarNode = self.priority_queue.get()[2]  # Note: [0] is the cost, [1] is the ID, [2] ist the Node
             self.visited_queue.append(closest_child)
-            for child in (closest_child.create_children()):
-                if not self.discovered(child):
-                    child_id += 1  # If there are two child with the same cost, we will dequeue the first one discovered
-                    if child.value == self.goal:
-                        return child.path
-                    self.priority_queue.put((child.cost, child_id, child))
+            for child in (child for child in closest_child.create_children() if child not in self.visited_queue):
+                child_id += 1  # If there are two child with the same cost, we will dequeue the first one discovered
+                if child.value == self.goal:
+                    return child.path
+                self.priority_queue.put((child.cost, child_id, child))
         return None
