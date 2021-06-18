@@ -12,6 +12,7 @@ def ask_for_solver():
         2 - Solve with Depth first algorithm
         3 - Solve with Greedy best first
         4 - Solve with A* algorithm
+        5 - Solve with Depth limited search
     """)
 
     return choice(engine, unknown_message='Unknown solver:')
