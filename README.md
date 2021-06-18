@@ -11,3 +11,9 @@ lassabban haladó tempójában ballagnak. Az átkeléshez adott és szükséges
 továbbá egy elemlámpa, amelyet magunkkal visznek az átkelők. (Lámpa
 nélkül nem lehet átmenni.) Hogyan jutnak át mind a négyen a túlsó oldalra
 17 percen belül?
+
+## Külsö könyvtárak:
+Pontos verziók a [requirements.txt](https://github.com/dombidav/mest-int-bead/blob/master/requirements.txt)-ben. PIP-el mindent lehet telepíteni: `pip install -r requirements.txt`
+
+- [future](https://pypi.org/project/future/)
+- [PriorityQueue](https://pypi.org/project/PriorityQueue/)
