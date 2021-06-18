@@ -19,12 +19,11 @@ class DepthFirstSolver(SolverEngine):
         stack: list[DfsNode] = [start_node]
         while stack:
             currentNode = stack.pop()
-            if currentNode not in self.visited_queue:
-                if currentNode.value == self.goal:
-                    return currentNode.path
-                self.visited_queue.append(currentNode)
-                child: DfsNode
-                currentNode.create_children()
-                for child in currentNode.children:
-                    stack.append(child)
+
+            if currentNode.value == self.goal:
+                return currentNode.path
+
+            self.visited_queue.append(currentNode)
+            for child in (child for child in currentNode.create_children() if child not in self.visited_queue):
+                stack.append(child)
         return None
