@@ -21,11 +21,9 @@ class GreedySolver(SolverEngine):
             closest_child: GreedyNode = self.priority_queue.get()[2]
             self.visited_queue.append(closest_child)
             for child in (child for child in closest_child.create_children() if child not in self.visited_queue):
-                child_id += 1
                 if child.value == self.goal:
-                    self.path = child.path
-                    break
+                    return child.path
+
+                child_id += 1
                 self.priority_queue.put((child.cost, child_id, child))
-        if not self.path:
-            return None
-        return self.path
+        return None
