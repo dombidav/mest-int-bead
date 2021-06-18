@@ -44,12 +44,10 @@ def move_persons(state: State, moving_persons: list[Person]) -> (State, int):
 
 
 def generate_children(state: State) -> list[State]:
-    result = []
     side = state.left_side if state.lamp_on_left else state.right_side
     for i in range(len(side)):
         if is_valid(state, [side[i]]):
-            result.append(move_persons(state, [side[i]]))
+            yield move_persons(state, [side[i]])
         for j in range(i + 1, len(side)):
             if is_valid(state, [side[i], side[j]]):
-                result.append(move_persons(state, [side[i], side[j]]))
-    return result
+                yield move_persons(state, [side[i], side[j]])
