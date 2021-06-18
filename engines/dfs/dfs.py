@@ -22,11 +22,7 @@ class DepthFirstSolver(SolverEngine):
             currentNode = stack.pop()
             if currentNode not in visited:
                 if currentNode.value == self.goal:
-                    result = [currentNode.value]
-                    while currentNode.parent:
-                        currentNode = currentNode.parent
-                        result.append(currentNode.value)
-                    return result[::-1]
+                    return currentNode.path
                 visited.add(currentNode)
                 child: DfsNode
                 currentNode.create_children()
