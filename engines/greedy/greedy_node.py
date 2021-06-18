@@ -9,7 +9,7 @@ class GreedyNode(Node):
         super(GreedyNode, self).__init__(value, parent)
         self.cost = self.get_cost()
 
-    def get_cost(self):  # h()
+    def get_cost(self):  # h() function
         return len(self.value.left_side)
 
     def create_children(self):
