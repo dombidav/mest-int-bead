@@ -18,9 +18,9 @@ class SolverEngine(metaclass=ABCMeta):
 
     def solve(self) -> Optional[list[State]]:
         start_time = time.time()
-        result = self.implementation()
+        self.path = self.implementation()
         self.execution_time = time.time() - start_time
-        return result
+        return self.path
 
     @abstractmethod
     def implementation(self) -> Optional[list[State]]:
