@@ -10,8 +10,7 @@ from models.state import State
 class SolverEngine(metaclass=ABCMeta):
     def __init__(self, start: State, goal: State):
         self.path: list[State] = []
-        self.visited_queue: list[Node] = []
-        self.priority_queue = PriorityQueue()
+        self.visited: list[Node] = []
         self.start: State = start
         self.goal: State = goal
         self.execution_time: float = 0
@@ -32,7 +31,7 @@ class SolverEngine(metaclass=ABCMeta):
         pass
 
     def discovered(self, child: Node) -> Optional[Node]:
-        for node in self.visited_queue:
+        for node in self.visited:
             if node.value == child.value:
                 return child
         return None

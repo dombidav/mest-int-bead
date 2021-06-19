@@ -1,3 +1,4 @@
+from queue import PriorityQueue
 from typing import Optional
 
 from abstract.engine import SolverEngine
@@ -12,18 +13,19 @@ class GreedySolver(SolverEngine):
 
     def __init__(self, start, goal):
         super(GreedySolver, self).__init__(start, goal)
+        self.open_nodes = PriorityQueue()
 
     def implementation(self) -> Optional[list[State]]:
         start_node = GreedyNode(self.start, None)
         child_id = 0
-        self.priority_queue.put((0, child_id, start_node))
-        while not self.path and self.priority_queue.qsize():
-            closest_child: GreedyNode = self.priority_queue.get()[2]
-            self.visited_queue.append(closest_child)
-            for child in (child for child in closest_child.children() if child not in self.visited_queue):
+        self.open_nodes.put((0, child_id, start_node))
+        while not self.path and self.open_nodes.qsize():
+            closest_child: GreedyNode = self.open_nodes.get()[2]
+            self.visited.append(closest_child)
+            for child in (child for child in closest_child.children() if child not in self.visited):
                 if child.value == self.goal:
                     return child.path
 
                 child_id += 1
-                self.priority_queue.put((child.cost, child_id, child))
+                self.open_nodes.put((child.cost, child_id, child))
         return None

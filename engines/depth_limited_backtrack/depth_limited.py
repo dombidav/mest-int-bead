@@ -29,8 +29,8 @@ class DepthLimitedSolver(SolverEngine):
         if depth_limit <= 0:
             return None
 
-        self.visited_queue.append(current_node)
-        for result in (self.recurse(child, depth_limit - 1) for child in current_node.children() if child not in self.visited_queue):
+        self.visited.append(current_node)
+        for result in (self.recurse(child, depth_limit - 1) for child in current_node.children() if child not in self.visited):
             if result:
                 return result
         return None
