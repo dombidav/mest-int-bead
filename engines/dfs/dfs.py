@@ -1,22 +1,19 @@
-from typing import Optional
-
 from abstract.engine import SolverEngine
 from engines.dfs.dfs_node import DfsNode
-from models.state import State
 
 
 class DepthFirstSolver(SolverEngine):
 
-    def __init__(self, start: State, goal: State):
+    def __init__(self, start, goal):
         super().__init__(start, goal)
 
     @property
-    def name(self) -> str:
+    def name(self):
         return 'Depth First Search Algorithm'
 
-    def implementation(self) -> Optional[list[State]]:
+    def implementation(self):
         start_node = DfsNode(self.start, None)
-        stack: list[DfsNode] = [start_node]
+        stack = [start_node]
         while stack:
             currentNode = stack.pop()
 

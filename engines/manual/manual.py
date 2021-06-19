@@ -1,12 +1,10 @@
 import re
-from typing import Optional
-from more_itertools import last
 
 from abstract.engine import SolverEngine
 from application.interaction import clear_output
 from models.operations import move_persons, is_valid
 from models.person import find_person
-from models.state import State, target_state
+from models.state import target_state
 
 
 def ask_move(current_state):
@@ -50,9 +48,9 @@ class ManualSolver(SolverEngine):
         super(ManualSolver, self).__init__(start, goal)
         self.stack = [start]
 
-    def implementation(self) -> Optional[list[State]]:
-        while target_state(self.start) != last(self.stack):
-            current_state = last(self.stack)
+    def implementation(self):
+        while target_state(self.start) != self.stack[-1]:
+            current_state = self.stack[-1]
             new_state = ask_move(current_state)
             if new_state is None:
                 self.stack.pop()

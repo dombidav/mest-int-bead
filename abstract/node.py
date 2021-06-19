@@ -1,16 +1,11 @@
-from __future__ import annotations
-
 from abc import ABCMeta, abstractmethod
-from typing import Optional
-
-from models.state import State
 
 
 class Node(metaclass=ABCMeta):
-    def __init__(self, value: State, parent: Node = None):
+    def __init__(self, value, parent=None):
         self.parent = parent
         self.value = value
-        self.cost: int = 0
+        self.cost = 0
         if parent:
             self.path = parent.path[:]
             self.path.append(value)

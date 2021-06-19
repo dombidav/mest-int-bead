@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 from abstract.node import Node
 from models.operations import *
 

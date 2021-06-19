@@ -1,8 +1,7 @@
-from models.person import Person
 from models.state import State
 
 
-def is_valid(state: State, moving_persons: list[Person]) -> bool:
+def is_valid(state, moving_persons):
     if max(person.minutes for person in moving_persons) > state.remaining_minutes:
         return False
 
@@ -22,13 +21,13 @@ def is_valid(state: State, moving_persons: list[Person]) -> bool:
     return True
 
 
-def clone_state(state: State) -> State:
+def clone_state(state):
     return State(state.left_side[:], state.right_side[:], state.remaining_minutes, state.lamp_on_left)
 
 
-def move_persons(state: State, moving_persons: list[Person]) -> (State, int):
+def move_persons(state, moving_persons):
     new_state = clone_state(state)
-    max_time: int = 0
+    max_time = 0
     for person in moving_persons:
         if person.minutes > max_time:
             max_time = person.minutes
@@ -43,7 +42,7 @@ def move_persons(state: State, moving_persons: list[Person]) -> (State, int):
     return new_state
 
 
-def generate_children(state: State) -> list[State]:
+def generate_children(state):
     side = state.left_side if state.lamp_on_left else state.right_side
     for i in range(len(side)):
         if is_valid(state, [side[i]]):

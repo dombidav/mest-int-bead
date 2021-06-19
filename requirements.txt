@@ -1,4 +1,3 @@
 # Install everything with `pip install -r requirements.txt`
 
-future>=0.18.2
 PriorityQueue>=1.3.0

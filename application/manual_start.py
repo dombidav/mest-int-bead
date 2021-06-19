@@ -3,7 +3,7 @@ from models.person import Person
 from models.state import State
 
 
-def ask_for_side(side: str, result: State):
+def ask_for_side(side, result):
     ans = ask_side_text(result, side)
     while ans != 'y':
         if ans == 'e':
@@ -45,7 +45,7 @@ def init_manual_start():
         clear_output()
         print("""
             Manual initialization of the state.
-            Instruction: First you can set the left side of the river. You can add people to each side, by writing the necessary minutes for the given person to cross the bride. Everyone should have different speeds.
+            Instruction you can set the left side of the river. You can add people to each side, by writing the necessary minutes for the given person to cross the bride. Everyone should have different speeds.
             """)
         result = State([])
 

@@ -1,11 +1,9 @@
-from __future__ import annotations
-
 from models.person import Person
 
 
 class State(object):
-    def __init__(self, left_side: list[Person], right_side: list[Person] = None, remaining_minutes: int = 0,
-                 lamp_on_left: bool = True):
+    def __init__(self, left_side, right_side=None, remaining_minutes=0,
+                 lamp_on_left=True):
         super(State, self).__init__()
 
         self.left_side = left_side
@@ -22,15 +20,15 @@ class State(object):
         return left_side + ' -- ' + right_side
 
 
-def short_start() -> State:
+def short_start():
     """
     This is an easy problem for debugging purposes
-    :return: State with only three person and plenty of time
+    :return with only three person and plenty of time
     """
     return State([Person(1), Person(2), Person(5)], remaining_minutes=11)
 
 
-def unsolvable_start() -> State:
+def unsolvable_start():
     """
     Unsolvable problem for debugging purposes
     :return: State with 5 person and not enough time
@@ -38,13 +36,13 @@ def unsolvable_start() -> State:
     return State([Person(1), Person(2), Person(5), Person(8), Person(10)], remaining_minutes=11)
 
 
-def target_state(starting_state: State) -> State:
+def target_state(starting_state):
     return State([], starting_state.left_side[:], 0, False)
 
 
-def default_start() -> State:
+def default_start():
     return State([Person(1), Person(2), Person(5), Person(10)], remaining_minutes=17)
 
 
-def multi_solution_start() -> State:
+def multi_solution_start():
     return State([Person(1), Person(2), Person(3), Person(4)], remaining_minutes=30)

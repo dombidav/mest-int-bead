@@ -1,5 +1,6 @@
 from application.interaction import clear_output, confirm
 from application.presentation import *
+from models.state import target_state
 
 if __name__ == '__main__':
     while True:

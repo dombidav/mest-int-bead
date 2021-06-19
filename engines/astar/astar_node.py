@@ -1,15 +1,13 @@
-from __future__ import annotations
-
 from abstract.node import Node
 from models.operations import *
 
 
-def g(node: AStarNode):
+def g(node):
     """Cost to get here. I want to find the shortest possible solution"""
     return node.path_length
 
 
-def h(node: AStarNode):
+def h(node):
     """Heuristic on this node. In practice remaining time should be considered too, but this is good enough for underestimation, also pretty efficient."""
     return len(node.value.left_side)
 

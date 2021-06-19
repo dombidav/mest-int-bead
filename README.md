@@ -12,8 +12,11 @@ továbbá egy elemlámpa, amelyet magunkkal visznek az átkelők. (Lámpa
 nélkül nem lehet átmenni.) Hogyan jutnak át mind a négyen a túlsó oldalra
 17 percen belül?
 
+## Szükséges Python verzió:
+- Main branch **>=Python 3.6** (Típus megkötések nélküli kód)
+- Typed branch **>=Python 3.9** (Lehet nyerni pár ezredmásodpercet, de nem jelentős)
+
 ## Külsö könyvtárak:
 Pontos verziók a [requirements.txt](https://github.com/dombidav/mest-int-bead/blob/master/requirements.txt)-ben. PIP-el mindent lehet telepíteni: `pip install -r requirements.txt`
 
-- [future](https://pypi.org/project/future/)
 - [PriorityQueue](https://pypi.org/project/PriorityQueue/)

@@ -1,7 +1,6 @@
 from application.interaction import choice
 from application.manual_start import init_manual_start
 from application.switches import *
-from models.state import State, target_state
 
 
 def ask_for_solver():
@@ -18,21 +17,21 @@ def ask_for_solver():
     return choice(engine, unknown_message='Unknown solver:')
 
 
-def print_solution(solution_list: list[State], solver: SolverEngine = None):
+def print_solution(solution_list, solver=None):
     if solution_list:
         print(f'Done with {solver.name} in {solver.execution_time * 1000} ms')
-        print('(Note: asterisk or * signals the position of the lamp)')
+        print('(Note: Asterisk or * signals the position of the lamp)')
         print('------')
         print('Steps:')
         for i in range(len(solution_list) - 1):
-            current_state: State = solution_list[i]
-            next_state: State = solution_list[i + 1]
+            current_state = solution_list[i]
+            next_state = solution_list[i + 1]
             if current_state.lamp_on_left:
                 diff = [person for person in current_state.left_side if person not in next_state.left_side]
             else:
                 diff = [person for person in current_state.right_side if person not in next_state.right_side]
             print(
-                f'{i}: {current_state} -> move {" and ".join(map(str, diff))} to {"right" if current_state.lamp_on_left else "left"}')
+                f'{i}: {current_state} {" and ".join(map(str, diff))} to {"right" if current_state.lamp_on_left else "left"}')
         print('==================')
         print(solution_list[-1])
         print(f'{solution_list[-1].remaining_minutes} minutes remaining')
@@ -40,7 +39,7 @@ def print_solution(solution_list: list[State], solver: SolverEngine = None):
         print('No solution for problem')
 
 
-def ask_for_start_state() -> State:
+def ask_for_start_state():
     print("""
         Please select start state:
             0 - Exit

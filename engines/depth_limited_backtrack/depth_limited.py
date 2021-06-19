@@ -1,10 +1,6 @@
-from typing import Optional
-
 from abstract.engine import SolverEngine
-from abstract.node import Node
 from application.interaction import numeric_input
 from engines.depth_limited_backtrack.limited_node import LimitedNode
-from models.state import State
 
 
 class DepthLimitedSolver(SolverEngine):
@@ -12,17 +8,17 @@ class DepthLimitedSolver(SolverEngine):
     Depth-first search with depth limit and circle detection.
     """
     @property
-    def name(self) -> str:
+    def name(self):
         return "Depth Limited Backtrack"
 
-    def implementation(self) -> Optional[list[State]]:
+    def implementation(self):
         start_node = LimitedNode(self.start, None)
         self.path = [start_node.value]
         depth_limit = numeric_input('Depth limit:')
         recurse = self.recurse(start_node, depth_limit)
         return recurse or None
 
-    def recurse(self, current_node: Node, depth_limit: int):
+    def recurse(self, current_node, depth_limit):
         if self.goal == current_node.value:
             return current_node.path
 
